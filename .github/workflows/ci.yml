@@ -25,16 +25,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install
   lint:
-    - steps:
+    runs-on: ubuntu-latest
+    steps:
       - name: Eslint
         run: pnpm lint
   
   test:
-    - steps:
+    runs-on: ubuntu-latest
+    steps:
       - name: Unit Test
         run: pnpm test-with-coverage
 
   build:
-    - steps:
+    runs-on: ubuntu-latest
+    steps:
       - name: Build
         run: pnpm build
