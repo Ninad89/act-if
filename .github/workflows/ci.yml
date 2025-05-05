@@ -1,9 +1,15 @@
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - "*"
+
+
+  pull_request:
+    branches:
+    - 'main'
 
 jobs:
-  cache-and-install:
+  CI:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,20 +30,10 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-  lint:
-    runs-on: ubuntu-latest
-    steps:
+      
       - name: Eslint
-        run: pnpm lint
-  
-  test:
-    runs-on: ubuntu-latest
-    steps:
+        run: pnpm lint  
       - name: Unit Test
         run: pnpm test-with-coverage
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
       - name: Build
-        run: pnpm build
+        run: pnpm build  
