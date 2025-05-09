@@ -8,10 +8,19 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [react(), dts({ tsconfigPath: './tsconfig.app.json', include: ['lib'] })],
+    plugins: [
+        react(),
+        dts({
+            tsconfigPath: './tsconfig.app.json',
+            include: ['lib'],
+            exclude: ['lib/**/*.spec.tsx'],
+            rollupTypes: true,
+        }),
+    ],
     build: {
         lib: {
-            entry: resolve(__dirname, 'lib/act-if.tsx'),
+            //fileName: 'index',
+            entry: resolve(__dirname, 'lib/index.tsx'),
             formats: ['es'],
         },
         copyPublicDir: false,
